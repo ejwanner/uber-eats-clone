@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Restaurant } from '../shared/types';
 
-const localData = [
+export const localData = [
     {
         name: 'Restaurant in the Skys',
         image_url: 'https://www.hugos-restaurant.de/wp-content/uploads/2015/10/restaurant-1.jpg',
@@ -29,10 +30,14 @@ const localData = [
     }
 ]
 
-const RestaurantItem = () => {
+type RestaurantDataProps = {
+    allRestaurants: Restaurant[],
+}
+
+const RestaurantItems: React.FC<RestaurantDataProps> = ({ allRestaurants }) => {
     return (
         <TouchableOpacity activeOpacity={1}>
-            {localData.map((restaurant, index) => (
+            {allRestaurants.map((restaurant: any, index: any) => (
                 <View
                     key={index}
                     style={styles.itemView}
@@ -45,7 +50,7 @@ const RestaurantItem = () => {
     )
 }
 
-export default RestaurantItem;
+export default RestaurantItems;
 
 type RestaurantImageProps = {
     image_url: string
@@ -56,7 +61,7 @@ type RestaurantInfoProps = {
     rating: number
 }
 
-const RestaurantImage = (props: RestaurantImageProps) => (
+const RestaurantImage: React.FC<RestaurantImageProps> = (props: RestaurantImageProps) => (
     <>
         <Image
             source={{ uri: props.image_url }}
@@ -68,7 +73,7 @@ const RestaurantImage = (props: RestaurantImageProps) => (
     </>
 )
 
-const RestaurantInfo = (props: RestaurantInfoProps) => (
+const RestaurantInfo: React.FC<RestaurantInfoProps> = (props: RestaurantInfoProps) => (
     <View style={styles.infoView}>
         <View>
             <Text style={styles.name}>{props.name}</Text>

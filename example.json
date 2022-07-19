@@ -1,0 +1,38 @@
+{
+  "alias": "augustiner-bräustuben-münchen", 
+  "categories": [
+    {"alias": "german", "title": "German"}, 
+    {"alias": "bavarian", "title": "Bavarian"}, 
+    {"alias": "gastropubs", "title": "Gastropubs"}
+  ], 
+  "coordinates": {
+    "latitude": 48.13912, 
+    "longitude": 11.54566
+    }, 
+  "display_phone": "+49 89 507047", 
+  "distance": 1762.7417552976374, 
+  "id": "YyhZm-hHANQzXiKgGrmesA", 
+  "image_url": "https://s3-media4.fl.yelpcdn.com/bphoto/Y7FTebVa587Rb3VD1LxObA/o.jpg", 
+  "is_closed": false, 
+  "location": {
+    "address1": "Landsberger Str. 19", 
+    "address2": null, 
+    "address3": null, 
+    "city": "Munich", 
+    "country": "DE", 
+    "display_address": [
+      "Landsberger Str. 19", 
+      "80339 Munich", 
+      "Germany"
+    ], 
+    "state": "BY", 
+    "zip_code": "80339"
+  }, 
+  "name": "Augustiner Bräustuben", 
+  "phone": "+4989507047", 
+  "price": "€€", 
+  "rating": 4, 
+  "review_count": 423, 
+  "transactions": [], 
+  "url": "https://www.yelp.com/biz/augustiner-br%C3%A4ustuben-m%C3%BCnchen?adjust_creative=NYIgWZHfXzIimT9z6tSyPg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=NYIgWZHfXzIimT9z6tSyPg"
+}

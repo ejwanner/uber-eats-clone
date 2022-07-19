@@ -1,14 +1,49 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Button, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import React, { useState } from 'react'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-const SearchBar = () => {
+type SearchBarProps = {
+    cityHandler: any
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ cityHandler }) => {
+    const [cityName, setCityName] = useState('');
+
     return (
         <View style={styles.searchBar}>
-            <GooglePlacesAutocomplete
+            <View style={styles.renderLeftButtonView}>
+                <Ionicons name="location-sharp" size={24} />
+            </View>
+            <TextInput
                 placeholder="Search"
+                style={{
+                    width: '75%',
+                }}
+                onChangeText={(name: string) => {
+                    setCityName(name);
+                }}
+            />
+            <TouchableOpacity
+                onPress={() => {
+                    cityHandler(cityName);
+                    console.log(cityName);
+                }}
+            >
+                <View style={styles.renderRightButtonView}>
+                    <AntDesign name="clockcircle" size={11} style={{ marginRight: 6 }} />
+                    <Text>Search</Text>
+                </View>
+            </TouchableOpacity>
+            {/* <GooglePlacesAutocomplete
+                placeholder="Search"
+                query={{ key: '' }}
+                onPress={(data, details = null) => {
+                    console.log(data.description);
+                    const city = data.description.split(',')[0];
+                    cityHandler(city);
+                }}
                 styles={{
                     textInput: {
                         backgroundColor: '#ddd',
@@ -35,7 +70,7 @@ const SearchBar = () => {
                         <Text>Search</Text>
                     </View>
                 )}
-            />
+            /> */}
         </View>
     )
 }
@@ -45,10 +80,20 @@ export default SearchBar
 const styles = StyleSheet.create({
     searchBar: {
         marginTop: 15,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        // delete underneath
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingLeft: 15,
+        paddingRight: 15,
+        backgroundColor: '#ddd',
+        borderRadius: 30
     },
     renderLeftButtonView: {
         marginLeft: 15,
+        // delete underneath
+        paddingRight: 15,
+        paddingLeft: 5
     },
     renderRightButtonView: {
         flexDirection: 'row',
@@ -57,5 +102,6 @@ const styles = StyleSheet.create({
         padding: 9,
         borderRadius: 30,
         alignItems: 'center'
+        // delete underneath
     }
 })
