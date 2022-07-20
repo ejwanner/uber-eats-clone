@@ -19,7 +19,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ cityHandler }) => {
             <TextInput
                 placeholder="Search"
                 style={{
-                    width: '75%',
+                    width: '65%',
                 }}
                 onChangeText={(name: string) => {
                     setCityName(name);
@@ -84,16 +84,17 @@ const styles = StyleSheet.create({
         // delete underneath
         justifyContent: 'center',
         alignItems: 'center',
-        paddingLeft: 15,
+        paddingLeft: 5,
         paddingRight: 15,
         backgroundColor: '#ddd',
-        borderRadius: 30
+        borderRadius: 30,
+        height: 50
     },
     renderLeftButtonView: {
         marginLeft: 15,
         // delete underneath
         paddingRight: 15,
-        paddingLeft: 5
+        paddingLeft: 10
     },
     renderRightButtonView: {
         flexDirection: 'row',
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         padding: 9,
         borderRadius: 30,
-        alignItems: 'center'
+        alignItems: 'center',
         // delete underneath
     }
 })

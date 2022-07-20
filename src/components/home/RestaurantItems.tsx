@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Restaurant } from '../shared/types';
+import { Restaurant } from '../../shared/types';
 
 export const localData = [
     {
@@ -61,10 +61,10 @@ type RestaurantInfoProps = {
     rating: number
 }
 
-const RestaurantImage: React.FC<RestaurantImageProps> = (props: RestaurantImageProps) => (
+const RestaurantImage: React.FC<RestaurantImageProps> = ({ image_url }) => (
     <>
         <Image
-            source={{ uri: props.image_url }}
+            source={{ uri: image_url }}
             style={styles.image}
         />
         <TouchableOpacity style={styles.heart}>
@@ -73,14 +73,14 @@ const RestaurantImage: React.FC<RestaurantImageProps> = (props: RestaurantImageP
     </>
 )
 
-const RestaurantInfo: React.FC<RestaurantInfoProps> = (props: RestaurantInfoProps) => (
+const RestaurantInfo: React.FC<RestaurantInfoProps> = ({ name, rating }) => (
     <View style={styles.infoView}>
         <View>
-            <Text style={styles.name}>{props.name}</Text>
+            <Text style={styles.name}>{name}</Text>
             <Text style={styles.deliveryTime}>30-45 Minuten</Text>
         </View>
         <View style={styles.starsView}>
-            <Text>{props.rating}</Text>
+            <Text>{rating}</Text>
         </View>
     </View>
 )

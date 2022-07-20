@@ -1,8 +1,12 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-import React, { useState } from 'react'
+import React from 'react'
 
-export default function HeaderTab() {
-    const [activeTab, setActiveTab] = useState('Delivery');
+type HeaderTabProps = {
+    activeTab: string;
+    setActiveTab: any;
+}
+
+const HeaderTab: React.FC<HeaderTabProps> = ({ activeTab, setActiveTab }) => {
 
     return (
         <View style={styles.headerView}>
@@ -23,6 +27,8 @@ export default function HeaderTab() {
         </View>
     )
 }
+
+export default HeaderTab;
 
 const HeaderButton = (props: any) => (
     <TouchableOpacity
