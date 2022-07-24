@@ -1,9 +1,9 @@
-import React from 'react';
-import Home from './src/screens/Home';
+import * as React from 'react';
+import RootNavigation from './src/navigation/RootNavigation';
 
 const App = () => {
     return (
-        <Home />
+        <RootNavigation />
     );
 };
 

@@ -8,11 +8,17 @@ import RestaurantItems, { localData } from '../components/home/RestaurantItems';
 import SearchBar from '../components/home/SearchBar';
 import { Restaurant } from '../shared/types';
 
-const Home: React.FC = () => {
+type HomeProps = {
+    navigation: any,
+}
+
+const Home: React.FC<HomeProps> = ({ navigation }) => {
 
     const [restaurantData, setRestaurantData] = useState<Restaurant[]>(localData);
     const [city, setCity] = useState('Chicago');
-    const [activeTab, setActiveTab] = useState('Delivery')
+    const [activeTab, setActiveTab] = useState('Delivery');
+
+    const YELP_API_KEY = '0stvb6AJmq2iTM8YWOQnYz7plTp0elsabvD1D2r1KgOwRypY1WDaT9BLjPONRVJSiy-pmAtCNMlqiZSCqVVV6ps0zlWIM68tBpSB7apjwKpKpo1FMKRiId8V4L7WYnYx'
 
     const getRestaurantsFromYelp = () => {
         const yelpUrl = `https://api.yelp.com/v3/businesses/search?term=restaurants&location=${city}`;
@@ -44,7 +50,7 @@ const Home: React.FC = () => {
             </View>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Categories />
-                <RestaurantItems allRestaurants={restaurantData} />
+                <RestaurantItems allRestaurants={restaurantData} navigation={navigation} />
             </ScrollView>
             <Divider width={1} />
             <BottomTabs />

@@ -3,6 +3,6 @@ export interface Restaurant {
     image_url: string,
     categories: string[],
     price: string,
-    reviews: number,
+    review_count: number,
     rating: number,
 }

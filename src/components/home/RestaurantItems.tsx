@@ -9,7 +9,7 @@ export const localData = [
         image_url: 'https://www.hugos-restaurant.de/wp-content/uploads/2015/10/restaurant-1.jpg',
         categories: ['Cafe', 'Bar'],
         price: '$$',
-        reviews: 894,
+        review_count: 894,
         rating: 4.5
     },
     {
@@ -17,7 +17,7 @@ export const localData = [
         image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOri--DBrtXlw1-pgw8P7tD-V0Oakea9V9Eg&usqp=CAU',
         categories: ['Fast Food'],
         price: '$',
-        reviews: 323,
+        review_count: 323,
         rating: 4.2
     },
     {
@@ -25,28 +25,41 @@ export const localData = [
         image_url: 'https://restaurant-schoppenhauer.de/images/slideshow/schoppenhauer_slideshow_4.jpg',
         categories: ['Cafe', 'Bar'],
         price: '$$$',
-        reviews: 6544,
+        review_count: 6544,
         rating: 4.9
     }
 ]
 
 type RestaurantDataProps = {
     allRestaurants: Restaurant[],
+    navigation: any
 }
 
-const RestaurantItems: React.FC<RestaurantDataProps> = ({ allRestaurants }) => {
+const RestaurantItems: React.FC<RestaurantDataProps> = ({ allRestaurants, navigation }) => {
     return (
-        <TouchableOpacity activeOpacity={1}>
-            {allRestaurants.map((restaurant: any, index: any) => (
-                <View
+        <>
+            {allRestaurants.map((restaurant: Restaurant, index: any) => (
+                <TouchableOpacity
                     key={index}
-                    style={styles.itemView}
+                    activeOpacity={1}
+                    onPress={() => navigation.navigate('RestaurantDetail', {
+                        name: restaurant.name,
+                        image: restaurant.image_url,
+                        price: restaurant.price,
+                        reviews: restaurant.review_count,
+                        rating: restaurant.rating,
+                        categories: restaurant.categories,
+                    })}
                 >
-                    <RestaurantImage image_url={restaurant.image_url} />
-                    <RestaurantInfo name={restaurant.name} rating={restaurant.rating} />
-                </View>
+                    <View
+                        style={styles.itemView}
+                    >
+                        <RestaurantImage image_url={restaurant.image_url} />
+                        <RestaurantInfo name={restaurant.name} rating={restaurant.rating} />
+                    </View>
+                </TouchableOpacity>
             ))}
-        </TouchableOpacity>
+        </>
     )
 }
 
@@ -87,9 +100,6 @@ const RestaurantInfo: React.FC<RestaurantInfoProps> = ({ name, rating }) => (
 
 
 const styles = StyleSheet.create({
-    touchableItem: {
-        marginBottom: 30
-    },
     itemView: {
         marginTop: 10,
         padding: 15,

@@ -1,13 +1,22 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import * as React from 'react'
 import About from '../components/restaurantDetail/About'
 import { Divider } from 'react-native-elements/dist/divider/Divider'
+import MenuItems from '../components/restaurantDetail/MenuItems'
+import ViewCart from '../components/restaurantDetail/ViewCart'
 
-const RestaurantDetail = () => {
+type RestaurantDetailProps = {
+    route: any,
+    navigation: any,
+}
+
+const RestaurantDetail: React.FC<RestaurantDetailProps> = ({ route, navigation }) => {
     return (
         <View>
-            <About />
+            <About route={route} />
             <Divider />
+            <MenuItems />
+            <ViewCart navigation={navigation} restaurantName={route.params.name} />
         </View>
     )
 }

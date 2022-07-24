@@ -1,19 +1,71 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Image, StyleSheet, Text, View } from 'react-native'
+import * as React from 'react'
 
-const image = 'https://www.hugos-restaurant.de/wp-content/uploads/2015/10/restaurant-1.jpg';
+type AboutProps = {
+    route: any,
+}
 
-const title = 'Fancy Restaurant Deluxe'
-const description = 'Thai · Comfort Food · $$$ · T · 4 Stars (2344+)';
+const About: React.FC<AboutProps> = ({ route }) => {
+    const { name, image, price, reviews, rating, categories } = route.params;
 
-const About = () => {
+    const foramttedCategories = categories.map((cat: any) => cat.title).join(' · ');
+
+    const description = `${foramttedCategories} ${price ? ' · ' + price : ''} · 🎫 · ${rating} ⭐️ (${reviews})`;
+
     return (
         <View>
-            <Text>About</Text>
+            <RestaurantImage image_url={image} />
+            <RestaurantName restaurantName={name} />
+            <RestaurantDescription restaurantDescription={description} />
         </View>
     )
 }
 
-export default About
+export default About;
 
-const styles = StyleSheet.create({})
+type RestaurantImageProps = {
+    image_url: string;
+}
+
+type RestaurantNameProps = {
+    restaurantName: string;
+}
+
+type RestaurantDescriptionProps = {
+    restaurantDescription: string;
+}
+
+const RestaurantImage: React.FC<RestaurantImageProps> = ({ image_url }) => (
+    <Image source={{ uri: image_url }} style={styles.image} />
+);
+
+const RestaurantName: React.FC<RestaurantNameProps> = ({ restaurantName }) => (
+    <Text style={styles.name}>
+        {restaurantName}
+    </Text>
+);
+
+const RestaurantDescription: React.FC<RestaurantDescriptionProps> = ({ restaurantDescription }) => (
+    <Text style={styles.description}>
+        {restaurantDescription}
+    </Text>
+);
+
+const styles = StyleSheet.create({
+    image: {
+        width: '100%',
+        height: 180,
+    },
+    name: {
+        fontSize: 29,
+        fontWeight: '600',
+        marginTop: 10,
+        marginHorizontal: 15,
+    },
+    description: {
+        marginTop: 10,
+        marginHorizontal: 15,
+        fontWeight: '400',
+        fontSize: 15,
+    }
+})
