@@ -14,8 +14,8 @@ const RestaurantDetail: React.FC<RestaurantDetailProps> = ({ route, navigation }
     return (
         <View>
             <About route={route} />
-            <Divider />
-            <MenuItems />
+            <Divider width={1.8} style={styles.divider} />
+            <MenuItems restaurantName={route.params.name} />
             <ViewCart navigation={navigation} restaurantName={route.params.name} />
         </View>
     )
@@ -23,4 +23,8 @@ const RestaurantDetail: React.FC<RestaurantDetailProps> = ({ route, navigation }
 
 export default RestaurantDetail
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    divider: {
+        marginVertical: 20,
+    }
+})
