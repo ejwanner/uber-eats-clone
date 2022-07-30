@@ -1,5 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
+import type { RootState } from '../../redux/store';
+import { useSelector } from 'react-redux';
 
 type ViewCartProps = {
     navigation: any,
@@ -7,38 +9,34 @@ type ViewCartProps = {
 }
 
 const ViewCart: React.FC<ViewCartProps> = ({ navigation, restaurantName }) => {
+    const items = useSelector((state: RootState) => state.card.selectedItems.items);
+    const total = items.map((item: any) => Number(item.price.replace('$', ''))).reduce((prev: number, curr: number) => prev + curr, 0);
+    const totalEUR = total.toLocaleString('de-DE', {
+        style: 'currency',
+        currency: 'EUR',
+    });
+
+    console.log('totalEUR', totalEUR);
+
     return (
-        <View style={styles.containerView}>
-            <View style={styles.container}>
-                <TouchableOpacity style={styles.buttonViewCard}>
-                    <Text style={styles.text}>View Cart</Text>
-                </TouchableOpacity>
-            </View>
-        </View>
+        <>
+            {total ? (
+                <View style={styles.containerView}>
+                    <View style={styles.container}>
+                        <TouchableOpacity style={styles.buttonViewCard}>
+                            <Text style={styles.text}>View Cart</Text>
+                            <Text style={styles.totalPrice}>{totalEUR}</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            ) : null}
+        </>
     )
 }
 
 export default ViewCart
 
 const styles = StyleSheet.create({
-    buttonViewCard: {
-        marginTop: 20,
-        backgroundColor: 'black',
-        alignItems: 'center',
-        padding: 13,
-        borderRadius: 30,
-        width: 300,
-        position: 'relative'
-    },
-    text: {
-        color: 'white',
-        fontSize: 20,
-    },
-    container: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        width: '100%',
-    },
     containerView: {
         flex: 1,
         alignItems: 'center',
@@ -47,5 +45,29 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 180,
         zIndex: 999
+    },
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        width: '100%',
+    },
+    buttonViewCard: {
+        marginTop: 20,
+        backgroundColor: 'black',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        padding: 15,
+        borderRadius: 30,
+        width: 300,
+        position: 'relative',
+    },
+    text: {
+        color: 'white',
+        fontSize: 20,
+        marginRight: 30,
+    },
+    totalPrice: {
+        color: 'white',
+        fontSize: 20,
     }
 })

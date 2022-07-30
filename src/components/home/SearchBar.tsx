@@ -4,6 +4,8 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
+// FIXME: fix the google places api with the payment
+
 type SearchBarProps = {
     cityHandler: any
 }

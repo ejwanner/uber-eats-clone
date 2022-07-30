@@ -9,6 +9,8 @@ import SearchBar from '../components/home/SearchBar';
 import { Restaurant } from '../shared/types';
 import { YELP_API_KEY } from '@env';
 
+// FIXME: fix the import of the @env file
+
 type HomeProps = {
     navigation: any,
 }

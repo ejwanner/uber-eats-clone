@@ -3,6 +3,7 @@ import * as React from 'react'
 import { Divider } from 'react-native-elements';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import { useDispatch } from 'react-redux';
+import { add_to_cart } from '../../redux/slices/cardSlice';
 
 const exampleFood = [
     {
@@ -45,13 +46,14 @@ type MenuItemProps = {
 const MenuItems: React.FC<MenuItemProps> = ({ restaurantName }) => {
 
     const dispatch = useDispatch();
-    const selectItem = (item: any) => dispatch({
-        type: 'ADD_TO_CART',
-        payload: {
+    // FIXME: add here the checkbox value here to call then the different reducers
+    const selectItem = (item: any, checkboxValue: boolean) => dispatch(
+        add_to_cart({
             ...item,
             restaurantName,
-        },
-    });
+            checkboxValue: checkboxValue
+        })
+    );
 
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -61,7 +63,7 @@ const MenuItems: React.FC<MenuItemProps> = ({ restaurantName }) => {
                         <BouncyCheckbox
                             iconStyle={styles.checkbox}
                             fillColor='green'
-                            onPress={() => selectItem(foodItem)}
+                            onPress={(checkboxValue: boolean) => selectItem(foodItem, checkboxValue)}
                         />
                         <FoodInfo
                             title={foodItem.title}

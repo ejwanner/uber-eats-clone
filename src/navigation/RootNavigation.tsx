@@ -4,9 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from '../screens/Home';
 import RestaurantDetail from '../screens/RestaurantDetail';
 import { Provider as ReduxProvider } from 'react-redux';
-import configureStore from '../redux/store';
-
-const store = configureStore();
+import { store } from '../redux/store';
 
 const RootNavigation = () => {
     const Stack = createNativeStackNavigator();
