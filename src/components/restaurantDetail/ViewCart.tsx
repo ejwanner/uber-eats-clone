@@ -1,5 +1,5 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, TouchableOpacity, View, Modal } from 'react-native'
+import React, { useState } from 'react'
 import type { RootState } from '../../redux/store';
 import { useSelector } from 'react-redux';
 
@@ -9,6 +9,8 @@ type ViewCartProps = {
 }
 
 const ViewCart: React.FC<ViewCartProps> = ({ navigation, restaurantName }) => {
+    const [modalVisible, setModalVisible] = useState(false);
+
     const items = useSelector((state: RootState) => state.card.selectedItems.items);
     const total = items.map((item: any) => Number(item.price.replace('$', ''))).reduce((prev: number, curr: number) => prev + curr, 0);
     const totalEUR = total.toLocaleString('de-DE', {
@@ -38,13 +40,11 @@ export default ViewCart
 
 const styles = StyleSheet.create({
     containerView: {
-        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
-        position: 'absolute',
-        bottom: 180,
-        zIndex: 999
+        // position: 'absolute',
+        // bottom: 30,
     },
     container: {
         flexDirection: 'row',

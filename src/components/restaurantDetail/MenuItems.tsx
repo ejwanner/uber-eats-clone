@@ -2,8 +2,9 @@ import { Image, ScrollView, StyleSheet, Text, View } from 'react-native'
 import * as React from 'react'
 import { Divider } from 'react-native-elements';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { add_to_cart } from '../../redux/slices/cardSlice';
+import { RootState } from '../../redux/store';
 
 const exampleFood = [
     {
@@ -36,7 +37,42 @@ const exampleFood = [
         price: '$19.90',
         image: 'https://sharkninja-cookingcircle.s3.eu-west-1.amazonaws.com/wp-content/uploads/2020/07/31170104/Tandori-chicken-1-rotated-1.jpg'
     },
-
+    {
+        title: 'Tandoori Food',
+        description: 'Super Tandoori lecker schmacko fazo essen vom Tandoori Grill',
+        price: '$19.90',
+        image: 'https://sharkninja-cookingcircle.s3.eu-west-1.amazonaws.com/wp-content/uploads/2020/07/31170104/Tandori-chicken-1-rotated-1.jpg'
+    },
+    {
+        title: 'Tandoori Food',
+        description: 'Super Tandoori lecker schmacko fazo essen vom Tandoori Grill',
+        price: '$19.90',
+        image: 'https://sharkninja-cookingcircle.s3.eu-west-1.amazonaws.com/wp-content/uploads/2020/07/31170104/Tandori-chicken-1-rotated-1.jpg'
+    },
+    {
+        title: 'Tandoori Food',
+        description: 'Super Tandoori lecker schmacko fazo essen vom Tandoori Grill',
+        price: '$19.90',
+        image: 'https://sharkninja-cookingcircle.s3.eu-west-1.amazonaws.com/wp-content/uploads/2020/07/31170104/Tandori-chicken-1-rotated-1.jpg'
+    },
+    {
+        title: 'Tandoori Food',
+        description: 'Super Tandoori lecker schmacko fazo essen vom Tandoori Grill',
+        price: '$19.90',
+        image: 'https://sharkninja-cookingcircle.s3.eu-west-1.amazonaws.com/wp-content/uploads/2020/07/31170104/Tandori-chicken-1-rotated-1.jpg'
+    },
+    {
+        title: 'Tandoori Food',
+        description: 'Super Tandoori lecker schmacko fazo essen vom Tandoori Grill',
+        price: '$19.90',
+        image: 'https://sharkninja-cookingcircle.s3.eu-west-1.amazonaws.com/wp-content/uploads/2020/07/31170104/Tandori-chicken-1-rotated-1.jpg'
+    },
+    {
+        title: 'Tandoori Food',
+        description: 'Super Tandoori lecker schmacko fazo essen vom Tandoori Grill',
+        price: '$19.90',
+        image: 'https://sharkninja-cookingcircle.s3.eu-west-1.amazonaws.com/wp-content/uploads/2020/07/31170104/Tandori-chicken-1-rotated-1.jpg'
+    },
 ];
 
 type MenuItemProps = {
@@ -55,6 +91,10 @@ const MenuItems: React.FC<MenuItemProps> = ({ restaurantName }) => {
         })
     );
 
+    const cartItems = useSelector((state: RootState) => state.card.selectedItems.items);
+
+    const isFoodInCart = (food: any, _cartItems: any) => Boolean(_cartItems.find((item: any) => item.title === food.title));
+
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             {exampleFood.map((foodItem, index) => (
@@ -64,6 +104,7 @@ const MenuItems: React.FC<MenuItemProps> = ({ restaurantName }) => {
                             iconStyle={styles.checkbox}
                             fillColor='green'
                             onPress={(checkboxValue: boolean) => selectItem(foodItem, checkboxValue)}
+                            isChecked={isFoodInCart(foodItem, cartItems)}
                         />
                         <FoodInfo
                             title={foodItem.title}
