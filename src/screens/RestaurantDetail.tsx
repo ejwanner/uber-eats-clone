@@ -13,14 +13,12 @@ type RestaurantDetailProps = {
 const RestaurantDetail: React.FC<RestaurantDetailProps> = ({ route, navigation }) => {
     return (
         <>
-            <View>
-                <About route={route} />
-                <Divider width={1.8} style={styles.divider} />
+            <About route={route} />
+            <Divider width={1.8} style={styles.divider} />
+            <View style={styles.menu}>
                 <MenuItems restaurantName={route.params.name} />
             </View>
-            <View style={styles.container}>
-                <ViewCart navigation={navigation} restaurantName={route.params.name} />
-            </View>
+            <ViewCart navigation={navigation} restaurantName={route.params.name} />
         </>
     )
 }
@@ -31,7 +29,7 @@ const styles = StyleSheet.create({
     divider: {
         marginVertical: 20,
     },
-    container: {
-        position: 'absolute'
+    menu: {
+        maxHeight: 420,
     }
 })

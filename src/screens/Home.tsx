@@ -7,7 +7,7 @@ import HeaderTab from '../components/home/HeaderTab';
 import RestaurantItems, { localData } from '../components/home/RestaurantItems';
 import SearchBar from '../components/home/SearchBar';
 import { Restaurant } from '../shared/types';
-import { YELP_API_KEY } from '@env';
+// import { YELP_API_KEY } from '@env';
 
 // FIXME: fix the import of the @env file
 
@@ -20,6 +20,8 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
     const [restaurantData, setRestaurantData] = useState<Restaurant[]>(localData);
     const [city, setCity] = useState('Chicago');
     const [activeTab, setActiveTab] = useState('Delivery');
+
+    const YELP_API_KEY = '0stvb6AJmq2iTM8YWOQnYz7plTp0elsabvD1D2r1KgOwRypY1WDaT9BLjPONRVJSiy-pmAtCNMlqiZSCqVVV6ps0zlWIM68tBpSB7apjwKpKpo1FMKRiId8V4L7WYnYx'
 
     const getRestaurantsFromYelp = () => {
         const yelpUrl = `https://api.yelp.com/v3/businesses/search?term=restaurants&location=${city}`;
