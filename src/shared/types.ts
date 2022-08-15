@@ -6,3 +6,10 @@ export interface Restaurant {
     review_count: number,
     rating: number,
 }
+
+export interface Food {
+    title: string,
+    description: string,
+    price: string,
+    image: string,
+}

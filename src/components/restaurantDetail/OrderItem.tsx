@@ -24,14 +24,16 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingRight: 20,
         borderBottomWidth: 1,
-        borderBottomColor: '#999'
+        borderBottomColor: '#999',
     },
     title: {
         fontWeight: '600',
         fontSize: 16,
+        margin: 10,
     },
     price: {
         opacity: 0.7,
         fontSize: 16,
+        margin: 10,
     }
 })
