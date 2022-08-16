@@ -21,7 +21,6 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
     const [city, setCity] = useState('Chicago');
     const [activeTab, setActiveTab] = useState('Delivery');
 
-    const YELP_API_KEY = '0stvb6AJmq2iTM8YWOQnYz7plTp0elsabvD1D2r1KgOwRypY1WDaT9BLjPONRVJSiy-pmAtCNMlqiZSCqVVV6ps0zlWIM68tBpSB7apjwKpKpo1FMKRiId8V4L7WYnYx'
 
     const getRestaurantsFromYelp = () => {
         const yelpUrl = `https://api.yelp.com/v3/businesses/search?term=restaurants&location=${city}`;
