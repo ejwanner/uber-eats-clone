@@ -70,6 +70,16 @@ const ViewCart: React.FC<ViewCartProps> = ({ navigation }) => {
 
     return (
         <>
+            {loading ?
+                <View style={styles.loading}>
+                    <LottieView
+                        style={styles.loadingAnimation}
+                        source={require('../../assets/loading.json')}
+                        autoPlay
+                        speed={1}
+                    />
+                </View>
+                : <></>}
             <Modal
                 animationType="slide"
                 visible={modalVisible}
@@ -78,7 +88,7 @@ const ViewCart: React.FC<ViewCartProps> = ({ navigation }) => {
             >
                 {checkoutModalContent()}
             </Modal>
-            {total ? (
+            {total && !loading ? (
                 <View style={styles.containerView}>
                     <View style={styles.container}>
                         <TouchableOpacity style={styles.buttonViewCard} onPress={() => setModalVisible(true)}>
@@ -88,16 +98,6 @@ const ViewCart: React.FC<ViewCartProps> = ({ navigation }) => {
                     </View>
                 </View>
             ) : null}
-            {loading ?
-                <View style={styles.loading}>
-                    <LottieView
-                        style={styles.loadingAnimation}
-                        source={require('../../assets/loading.json')}
-                        autoPlay
-                        speed={3}
-                    />
-                </View>
-                : <></>}
         </>
     )
 }
@@ -200,8 +200,10 @@ const styles = StyleSheet.create({
     loading: {
         backgroundColor: 'black',
         position: 'absolute',
-        opacity: 0.6,
+        opacity: 0.7,
         justifyContent: 'center',
-        alignSelf: 'center',
+        alignItems: 'center',
+        height: '100%',
+        width: '100%',
     }
 })
