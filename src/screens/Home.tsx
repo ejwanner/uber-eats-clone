@@ -27,7 +27,7 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
 
         const apiOptions = {
             headers: {
-                Authorization: `Bearer ${YELP_API_KEY}`
+                // Authorization: `Bearer ${YELP_API_KEY}`
             }
         };
 
